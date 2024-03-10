@@ -17,7 +17,13 @@ reportWebVitals();
 
 import { createStore } from "redux";
 
-function playlist(state = []) {
+function playlist(state = [], action) {
+  if (action.type === 'ADD_TRACK') {
+    return [
+      ...state,
+      action.payload
+    ];
+  }
   return state;
 }
 
@@ -28,3 +34,4 @@ store.subscribe(() => {
 });
 
 store.dispatch({type: 'ADD_TRACK', payload: 'Smell like spirit'});
+store.dispatch({type: 'ADD_TRACK', payload: 'Enter Sandman'});
