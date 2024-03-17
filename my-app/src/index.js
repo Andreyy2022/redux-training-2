@@ -1,21 +1,10 @@
-/*
+
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import { Provider } from 'react';
+import { createStore } from 'redux';
 import './index.css';
 import App from './App';
-import reportWebVitals from './reportWebVitals';
-
-const root = ReactDOM.createRoot(document.getElementById('root'));
-root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
-);
-
-reportWebVitals();
-*/
-
-import { createStore } from "redux";
 
 function playlist(state = [], action) {
   if (action.type === 'ADD_TRACK') {
@@ -28,6 +17,20 @@ function playlist(state = [], action) {
 }
 
 const store = createStore(playlist);
+
+const root = ReactDOM.createRoot(document.getElementById('root'));
+root.render(
+  <React.StrictMode>
+    <Provider store={store}>
+      <App />
+    </Provider>
+  </React.StrictMode>
+);
+
+/*
+import { createStore } from "redux";
+
+
 
 const addTrackBtn = document.querySelectorAll('.addTrack')[0];
 const trackInput = document.querySelectorAll('.trackInput')[0];
@@ -47,3 +50,4 @@ addTrackBtn.addEventListener('click', () => {
   const trackName = trackInput.value;
   store.dispatch({type: 'ADD_TRACK', payload: trackName});
 });
+*/
